@@ -3,6 +3,21 @@
 Interfaz inteligente multimodal para el Examen Práctico de **Diseño de Interacción Hombre–Máquina e Inteligencia Artificial**.
 Escenario asignado: **G2 — Turismo Inteligente** (Ruta del Spondylus, Ecuador).
 
+**Estudiante:** Diana Melena Santander · **Docente:** Msia. Daniel Quirumbay Y.
+
+### 🌐 Demo en vivo
+
+**https://misstery13.github.io/ruta-viva-turismo-inteligente/**
+
+El control por gestos funciona directamente en el sitio publicado (HTTPS permite el acceso a la cámara). Pulsa **Gestos → Iniciar cámara**.
+
+### 📄 Informe del examen
+
+- [ENTREGABLE-G2-Turismo-Inteligente.pdf](ENTREGABLE-G2-Turismo-Inteligente.pdf) — informe completo (20 páginas)
+- [ENTREGABLE-G2-Turismo-Inteligente.docx](ENTREGABLE-G2-Turismo-Inteligente.docx) — versión editable en Word
+
+![Pantalla principal](assets/captura-01-inicio.png)
+
 ## Cómo ejecutarlo
 
 Doble clic en `index.html` — se abre en el navegador, sin instalar nada.
