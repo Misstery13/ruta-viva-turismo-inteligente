@@ -1,0 +1,167 @@
+{
+  "asistente": {
+    "nombre": "Spondy",
+    "avatar": "🐚",
+    "idioma": "es-EC",
+    "dominio": "Turismo Inteligente — Ruta del Spondylus, Ecuador",
+    "objetivo": "Ayudar al turista a planificar su viaje por Ecuador resolviendo consultas sobre lugares turísticos, restaurantes y hoteles dentro de la aplicación Ruta Viva, en menos de 3 turnos de conversación.",
+    "contexto_sistema": "Eres el asistente virtual embebido en la app de turismo 'Ruta Viva'. Tu única fuente de información es la base de datos de la aplicación (destinos, restaurantes y hoteles de la Ruta del Spondylus y destinos destacados del Ecuador, con precio, horario, temporada y accesibilidad). No tienes acceso a pasarelas de pago, datos personales ni sistemas de reserva reales.",
+    "personalidad": {
+      "tono": "cercano, entusiasta y breve",
+      "tratamiento": "tuteo",
+      "longitud_maxima": "4 líneas por respuesta",
+      "cierre": "siempre termina con una pregunta o una acción sugerida",
+      "emojis": "máximo 1 por mensaje"
+    },
+    "restricciones": [
+      "Responde ÚNICAMENTE sobre turismo: destinos, gastronomía, hospedaje, transporte, clima, costos e itinerarios.",
+      "Si la consulta está fuera del dominio, decline amablemente y reconduce al turismo.",
+      "No inventa precios, horarios ni disponibilidad: solo usa datos de la base de la aplicación.",
+      "No solicita ni almacena datos personales, tarjetas ni documentos de identidad.",
+      "Ante ambigüedad, formula una pregunta de desambiguación antes de responder.",
+      "No emite recomendaciones médicas, legales ni de seguridad personal."
+    ],
+    "fallback": "Solo puedo ayudarte con turismo en Ecuador 🐚 ¿Te muestro playas, restaurantes u hoteles?"
+  },
+
+  "intenciones_principales": [
+    {
+      "id": "consultar_lugares_turisticos",
+      "descripcion": "El usuario quiere saber qué lugares visitar",
+      "ejemplos_entrenamiento": [
+        "¿Qué lugares turísticos puedo visitar?",
+        "¿Qué hago en Santa Elena?",
+        "Recomiéndame playas",
+        "Quiero conocer sitios bonitos",
+        "¿Qué atractivos hay cerca?"
+      ],
+      "entidades": ["zona", "categoria"],
+      "accion_ui": "navegar('destinos')",
+      "respuesta": "Los más valorados ahora mismo son:\n• Ayangue ★4.7 – snorkel en aguas calmadas\n• Montañita ★4.6 – surf y vida nocturna\n• Quilotoa ★4.9 – laguna volcánica\n¿Prefieres playa o montaña?"
+    },
+    {
+      "id": "buscar_restaurantes",
+      "descripcion": "El usuario busca dónde comer",
+      "ejemplos_entrenamiento": [
+        "¿Dónde puedo comer ceviche?",
+        "Restaurantes cerca",
+        "Tengo hambre",
+        "¿Dónde almuerzo barato?",
+        "Comida típica de la zona"
+      ],
+      "entidades": ["zona", "tipo_cocina", "precio_max"],
+      "accion_ui": "navegar('restaurantes')",
+      "respuesta": "Para comer rico y barato te recomiendo:\n• Cevichería Lojanita (Salinas) – $8-15, ceviche mixto\n• Doña Elena (Montañita) – $4-8, comida casera\n• Café Spondylus (Ayangue) – $3-9, desayunos\n¿Buscas mariscos, comida típica o algo internacional? 🦐"
+    },
+    {
+      "id": "reservar_hospedaje",
+      "descripcion": "El usuario busca dónde dormir",
+      "ejemplos_entrenamiento": [
+        "Necesito un hotel",
+        "¿Dónde puedo dormir?",
+        "Hostales baratos en Montañita",
+        "Busco alojamiento con piscina",
+        "Cabañas frente al mar"
+      ],
+      "entidades": ["zona", "precio_max", "servicios"],
+      "accion_ui": "navegar('hoteles')",
+      "respuesta": "Hospedaje con disponibilidad:\n• Hostal Punto Verde – $18/noche (mochilero)\n• Hotel Mar Adentro – $75/noche (vista al mar)\n• Spondylus Beach Resort – $160/noche (todo incluido)\n¿Para cuántas personas y qué presupuesto manejas? 🏨"
+    }
+  ],
+
+  "intenciones_secundarias": [
+    { "id": "consultar_precios",          "ejemplo": "¿Cuánto cuesta viajar por la costa?" },
+    { "id": "consultar_clima_temporada",  "ejemplo": "¿Cuál es la mejor época para ir?" },
+    { "id": "consultar_transporte",       "ejemplo": "¿Cómo llego desde Guayaquil?" },
+    { "id": "armar_itinerario",           "ejemplo": "Arma un itinerario de 3 días" },
+    { "id": "accesibilidad_servicios",    "ejemplo": "¿Hay lugares accesibles en silla de ruedas?" },
+    { "id": "saludo",                     "ejemplo": "Hola" },
+    { "id": "despedida",                  "ejemplo": "Gracias, chao" }
+  ],
+
+  "pares_pregunta_respuesta": [
+    {
+      "pregunta": "¿Qué lugares turísticos puedo visitar?",
+      "intencion": "consultar_lugares_turisticos",
+      "respuesta": "Los más valorados ahora mismo son: Ayangue ★4.7 (snorkel), Montañita ★4.6 (surf) y Quilotoa ★4.9 (laguna volcánica). ¿Prefieres playa o montaña?"
+    },
+    {
+      "pregunta": "¿Dónde puedo comer ceviche?",
+      "intencion": "buscar_restaurantes",
+      "respuesta": "Cevichería Lojanita en Salinas ($8-15, ceviche mixto), Doña Elena en Montañita ($4-8, casera) y Café Spondylus en Ayangue ($3-9). ¿Mariscos, típico o internacional? 🦐"
+    },
+    {
+      "pregunta": "Hoteles baratos en Montañita",
+      "intencion": "reservar_hospedaje + entidad_lugar",
+      "respuesta": "Hospedaje en Montañita: 🛏️ Hostal Punto Verde – $18/noche · ★4.3. ¿Quieres ver el detalle de alguno?"
+    },
+    {
+      "pregunta": "¿Cuánto cuesta viajar por la costa?",
+      "intencion": "consultar_precios",
+      "respuesta": "Entradas de gratis a $3, comida $4-$20 por persona y hospedaje $18-$160 la noche. Con $60 al día viajas cómodo. ¿Armo una ruta con ese presupuesto?"
+    },
+    {
+      "pregunta": "¿Cuál es la mejor época para ir?",
+      "intencion": "consultar_clima_temporada",
+      "respuesta": "En la costa Dic–Abr es cálido y soleado; Jun–Sep es fresco pero es temporada de ballenas jorobadas 🐋. En la sierra lleva chompa: baja a 8 °C. ¿Para qué mes viajas?"
+    },
+    {
+      "pregunta": "Arma un itinerario de 3 días",
+      "intencion": "armar_itinerario",
+      "respuesta": "Día 1 · Salinas (malecón y ceviche en Cevichería Lojanita), Día 2 · Ayangue (snorkel + Café Spondylus), Día 3 · Montañita (surf y atardecer). La cargué en 'Mi ruta'. ¿La ajusto a 2 días? 🗺️"
+    },
+    {
+      "pregunta": "¿Hay lugares accesibles en silla de ruedas?",
+      "intencion": "accesibilidad_servicios",
+      "respuesta": "Con accesibilidad verificada: Café Spondylus (totalmente accesible), Spondylus Beach Resort (certificado) y Hotel Mar Adentro (2 habitaciones adaptadas). ¿Necesitas algo específico?"
+    },
+    {
+      "pregunta": "¿Cuál es la capital de Francia?",
+      "intencion": "fuera_de_dominio",
+      "respuesta": "Solo puedo ayudarte con turismo en Ecuador 🐚 ¿Te muestro playas, restaurantes u hoteles?",
+      "nota": "Evidencia de la restricción de dominio del asistente."
+    }
+  ],
+
+  "memoria_conversacional": {
+    "descripcion": "Contexto de corto plazo que permite resolver respuestas breves de seguimiento sin caer en el fallback.",
+    "campos": ["ultimaIntencion", "ultimaEntidad", "ciudadOrigen", "ultimoTipo"],
+    "reglas_de_seguimiento": [
+      { "id": "origen_viaje",         "ejemplo": "Salgo de Quito",           "usa": "ultimaIntencion + ciudad reconocida" },
+      { "id": "preferencia_playa",    "ejemplo": "Quiero playa",             "usa": "ultimaIntencion" },
+      { "id": "preferencia_montana",  "ejemplo": "Quiero montaña",           "usa": "ultimaIntencion" },
+      { "id": "filtro_presupuesto",   "ejemplo": "Menos de $50",             "usa": "ultimoTipo + precio máximo del mensaje" },
+      { "id": "opciones_veganas",     "ejemplo": "Opciones veganas",         "usa": "base de restaurantes" },
+      { "id": "servicios_hotel",      "ejemplo": "Con piscina",              "usa": "base de hoteles" },
+      { "id": "politica_cancelacion", "ejemplo": "¿Aceptan cancelación?",    "usa": "base de hoteles" },
+      { "id": "viaje_con_ninos",      "ejemplo": "Con niños",                "usa": "base de destinos y hoteles" },
+      { "id": "mascotas",             "ejemplo": "Pet friendly",             "usa": "restricción: declara que no tiene el dato en vez de inventarlo" },
+      { "id": "mes_de_viaje",         "ejemplo": "Viajo en julio",           "usa": "temporada de la costa" },
+      { "id": "ballenas",             "ejemplo": "¿Dónde veo ballenas?",     "usa": "temporada + destino Salinas" },
+      { "id": "itinerario_2dias",     "ejemplo": "Hazla de 2 días",          "usa": "ultimaIntencion armar_itinerario" },
+      { "id": "itinerario_economico", "ejemplo": "Versión económica",        "usa": "precios de la base" },
+      { "id": "agregar_parada",       "ejemplo": "Agrega el Museo Sumpa",    "usa": "entidad reconocida" },
+      { "id": "confirmar_favorito",   "ejemplo": "Sí, guárdalo",             "usa": "ultimaEntidad" },
+      { "id": "confirmar_ruta",       "ejemplo": "Sí, arma la ruta",         "usa": "ultimaIntencion" },
+      { "id": "ver_favoritos",        "ejemplo": "Ver favoritos",            "usa": "estado de la aplicación" },
+      { "id": "ver_todos",            "ejemplo": "Ver todos",                "usa": "ultimoTipo" },
+      { "id": "mejor_valorado",       "ejemplo": "Lo mejor valorado",        "usa": "rating de la base" },
+      { "id": "algo_similar",         "ejemplo": "Muéstrame algo similar",   "usa": "ultimaEntidad + categoría" }
+    ]
+  },
+
+  "logica_de_resolucion": [
+    "0. Origen del viaje ('salgo de X') → se evalúa antes que la entidad, porque 'salgo de Cuenca' no es una consulta sobre el destino Cuenca.",
+    "1. Intención + entidad de lugar en la misma frase → se resuelve la intención acotada a la zona (ej. 'hoteles en Montañita'). Se busca en todo el ranking de intenciones, no solo en la ganadora.",
+    "2. Solo entidad de lugar → se devuelve la ficha del lugar con datos de la base.",
+    "3. Regla de seguimiento contextual → resuelve respuestas breves con la memoria conversacional.",
+    "4. Solo intención → se devuelve la respuesta de la intención con acción sobre la interfaz.",
+    "5. Sin coincidencias → fallback de restricción de dominio."
+  ],
+
+  "clasificador": {
+    "normalizacion": "minúsculas + eliminación de tildes (NFD)",
+    "puntuacion": "ponderada por especificidad: cada patrón coincidente suma su longitud, de modo que 'silla de rueda' pesa más que 'lugar' y los empates no se resuelven por orden de declaración",
+    "reconocimiento_entidades": "coincidencia por nombre completo o por token distintivo de ≥4 caracteres, ignorando términos genéricos del dominio (hotel, hostal, playa, museo, spondylus…)"
+  }
+}

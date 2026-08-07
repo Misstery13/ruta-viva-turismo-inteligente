@@ -1,0 +1,21 @@
+# Configuración local de Claude Code
+.claude/
+
+# macOS
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+
+# Editores
+.vscode/
+.idea/
+*.swp
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Temporales
+*.tmp
+*.log
